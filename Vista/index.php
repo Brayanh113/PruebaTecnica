@@ -1,7 +1,10 @@
 <?php
 include "../Controlador/controladorPersonas.php";
 $listarPersonas = $controladorPersonas->listarPersonas();
-$listarEdad = $controladorPersonas->listarMayores()
+$listarEdad = $controladorPersonas->listarMayores();
+$listarHijos = $controladorPersonas->listarHijos();
+$listarAbuelos = $controladorPersonas->listarAbuelos();
+
 ?>
 
 
@@ -23,7 +26,8 @@ $listarEdad = $controladorPersonas->listarMayores()
 		<h2 style="text-align: center">Prueba Técnica</h2>
 	</div>
 	<br>
-	<div class="row">
+	<div class="row" >
+		<col span="10">
 		<table id="tabla" class="table table-striped" style="width:100%">
 		<thead>
 			<tr>
@@ -38,7 +42,7 @@ $listarEdad = $controladorPersonas->listarMayores()
 				<th>Hijos</th>
 				<th># Hijos</th>
 				<th>IdPadres</th>
-				<th>Acciones</th>
+				<th>Carita</th>
 			</tr>
 		</thead>
 			<tbody>
@@ -74,7 +78,7 @@ $listarEdad = $controladorPersonas->listarMayores()
 
 					<td><button <?php $id = $cont++ ?> id="<?php echo $id?>"type="button" style="width:100%" onclick="cambiarcolor(<?php echo $id?>)"><?php echo $listar['idPadres']?></td>
 
-					<td><button <?php $id = $cont++ ?> id="<?php echo $id?>"type="button" style="width:100%" onclick="cambiarcolor(<?php echo $id?>)"> ver</button></td>
+					<td><button <?php $id = $cont++ ?> id="<?php echo $id?>"type="button" style="width:100%" onclick="cambiarcolor(<?php echo $id?>)">:)</button></td>
 				</tr>
 				<?php
 				}
@@ -82,20 +86,20 @@ $listarEdad = $controladorPersonas->listarMayores()
 			</tbody>
 		</table>
 
-		
+		</col>
 	</div> 
 
 	<!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-  Launch demo modal
-</button>
+	<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+	  Ver mayores de edad
+	</button>
 
-<!-- Modal -->
+	<!-- Modal -->
 	<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 	  <div class="modal-dialog" role="document">
 	    <div class="modal-content">
 	      <div class="modal-header">
-	        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+	        <h5 class="modal-title" id="exampleModalLabel">MMayores de edad</h5>
 	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 	          <span aria-hidden="true">&times;</span>
 	        </button>
@@ -124,14 +128,154 @@ $listarEdad = $controladorPersonas->listarMayores()
 	        </table>
 	      </div>
 	      <div class="modal-footer">
-	        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-	        <button type="button" class="btn btn-primary">Save changes</button>
+	        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
 	      </div>
 	    </div>
 	  </div>
 	</div>
 
 
+	<!-- Button trigger modal -->
+	<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#hijos">
+	  Ver más de un hijo
+	</button>
+
+	<!-- Modal -->
+	<div class="modal fade" id="hijos" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h5 class="modal-title" id="exampleModalLabel">Más de un hijo</h5>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	      </div>
+	      <div class="modal-body">
+	        <table id="tabla" class="table table-striped" style="width:100%">
+	        	<thead>
+	        		<tr>
+	        			<th>Nombre</th>
+	        			<th>Apellido</th>
+	        			<th>#Hijos</th>
+	        		</tr>
+	        	</thead>
+	        	<tbody>
+	        		<?php
+	        		foreach ($listarHijos as $hijos) {
+	        		 ?>
+	        		<tr>
+	        			<td><?php echo $hijos['nombre'] ?></td>
+	        			<td><?php echo $hijos['apellido'] ?></td>
+	        			<td><?php echo $hijos['n_hijos'] ?></td>
+	        		</tr>
+
+	        		<?php 
+	        		}
+	        		?>
+	        	</tbody>
+	        </table>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+
+
+	<!-- Button trigger modal -->
+	<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#abuelos">
+	  Ver Abuelos
+	</button>
+
+	<!-- Modal -->
+	<div class="modal fade" id="abuelos" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h5 class="modal-title" id="exampleModalLabel">Abuelos</h5>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	      </div>
+	      <div class="modal-body">
+	        <table id="tabla" class="table table-striped" style="width:100%">
+	        	<thead>
+	        		<tr>
+	        			<th>Nombre</th>
+	        			<th>Apellido</th>
+	        		</tr>
+	        	</thead>
+	        	<tbody>
+	        		<?php
+	        		foreach ($listarAbuelos as $abuelos) {
+	        		 ?>
+	        		<tr>
+	        			<td><?php echo $abuelos['nombre'] ?></td>
+	        			<td><?php echo $abuelos['apellido'] ?></td>
+	        		</tr>
+
+	        		<?php 
+	        		}
+	        		?>
+	        	</tbody>
+	        </table>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+
+	<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#edadhijos">
+	  Ver a que edad tuvieron los hijos
+	</button>
+
+	<!-- Modal -->
+	<div class="modal fade" id="edadhijos" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h5 class="modal-title" id="exampleModalLabel">A que edad tuvieron los hijos</h5>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	      </div>
+	      <div class="modal-body">
+	        <table id="tabla" class="table table-striped" style="width:100%">
+	      		<thead>
+	      			<tr>
+	      				<th>Nombre</th>
+	      				<th>Edad en la que tuvieron</th>
+
+	      			</tr>
+	      		</thead>
+	      		<tbody>
+	      			<?php
+	      			foreach ($listarPersonas as $listar) {
+	      			?>
+	      			<tr>
+	      				<td><?php echo $listar['nombre']?></td>
+	      				<td><?php echo $listar['edadTuvoHijos']?></td>
+	      			</tr>
+
+	      			<?php 
+	      				}
+	      			 ?>
+	      		</tbody>
+	      	</table>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+
+
+
+	
 
 	<script type="text/javascript" src="js/sweetalert2@11.js"></script>
 	<script type="text/javascript" src="js/colores.js"></script>
